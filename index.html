@@ -4,19 +4,35 @@
   <meta charset="UTF-8">
   <title>Marcador</title>
   <meta http-equiv="refresh" content="60"> <!-- Actualiza cada minuto -->
+  <meta name="viewport" content="width=897, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    body {
+html, body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+.wrapper {
+  width: 897px;
+  height: 192px;
+  position: relative;
+  margin: 0 auto;
+  transform: scale(1);
+  transform-origin: top left;
+  }	
+
+  body {
       margin: 0;
-      background-image: url("fondo.png"); /* Fondo personalizado por pantalla */
-      background-size: cover;
-      background-repeat: no-repeat;
-      height: 192px;
-      width: 897px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-    }
+    background-image: url("fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 192px;
+    width: 897px;
+    font-family: sans-serif;
+    position: relative; /* ¡Importante! */
+    overflow: hidden; /* Por si acaso */
+  }
 
     .contenedor-marcador {
       display: flex;
@@ -27,29 +43,41 @@
     }
 
     .score {
-      position: absolute;
+	position: absolute;
       font-size: 50px;
       font-weight: bold;
       color: #00157F;
     }
 
     #score-brasil {
-      left: 370px;  /* Ajusta esta posición según el diseño */
-      top: 72px;
+  position: absolute;
+  left: 230px;
+  top: 115px;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+  color: #00157F;
+  font-weight: bold;
     }
 
     #score-colombia {
-      right: -250px; /* Ajusta esta posición según el diseño */
-      top: 75px;
-    }
+  position: absolute;
+  left: 669px;
+  top: 115px;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+  color: #00157F;
+  font-weight: bold;
+}
+
   </style>
 </head>
 <body>
-  <div class="contenedor-marcador">
-    <div id="score-brasil" class="score">-</div>
-    <div id="score-colombia" class="score">-</div>
+  <div class="wrapper">
+    <div class="contenedor-marcador">
+      <div id="score-brasil" class="score">-</div>
+      <div id="score-colombia" class="score">-</div>
+    </div>
   </div>
-
   <script>
     async function cargarMarcador() {
       try {
