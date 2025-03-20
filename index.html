@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Marcador</title>
+  <meta http-equiv="refresh" content="60"> <!-- Actualiza cada minuto -->
+  <style>
+    body {
+      margin: 0;
+      background-image: url("fondo.png"); /* Fondo personalizado por pantalla */
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 192px;
+      width: 897px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    .contenedor-marcador {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .score {
+      position: absolute;
+      font-size: 50px;
+      font-weight: bold;
+      color: #00157F;
+    }
+
+    #score-brasil {
+      left: 370px;  /* Ajusta esta posición según el diseño */
+      top: 72px;
+    }
+
+    #score-colombia {
+      right: -250px; /* Ajusta esta posición según el diseño */
+      top: 75px;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor-marcador">
+    <div id="score-brasil" class="score">-</div>
+    <div id="score-colombia" class="score">-</div>
+  </div>
+
+  <script>
+    async function cargarMarcador() {
+      try {
+        const response = await fetch("https://raw.githubusercontent.com/DannaiCo/Marcador-eliminatoria/main/Fuente%20de%20Marcador.html");
+        const contenido = await response.text();
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = contenido;
+
+        const brasil = tempDiv.querySelector("#score-brasil").innerText;
+        const colombia = tempDiv.querySelector("#score-colombia").innerText;
+
+        document.getElementById("score-brasil").innerText = brasil;
+        document.getElementById("score-colombia").innerText = colombia;
+      } catch (e) {
+        document.getElementById("score-brasil").innerText = "?";
+        document.getElementById("score-colombia").innerText = "?";
+      }
+    }
+
+    cargarMarcador();
+  </script>
+</body>
+</html>
